@@ -40,7 +40,7 @@ def train(model, loss_func, optimizer, cfg, train_data):
         #predictions = [sent len, batch size, output dim]
         #tags = [sent len, batch size]
         
-        predictions = predictions.view(-1, predictions.shape[-1])
+        predictions = predictions.reshape(-1, predictions.shape[-1])
         tags = tags.view(-1)
         
         #predictions = [sent len * batch size, output dim]
@@ -59,7 +59,7 @@ def train(model, loss_func, optimizer, cfg, train_data):
         
     return epoch_loss / len(train_data), epoch_acc / len(train_data)
 
-def evaluate(model, cfg, val_data):
+def evaluate(model, loss_func, cfg, val_data):
     epoch_loss = 0
     epoch_acc = 0
     tag_pad_idx = cfg.tag_pad_idx
@@ -74,11 +74,12 @@ def evaluate(model, cfg, val_data):
             
             predictions = model(text)
             
-            predictions = predictions.view(-1, predictions.shape[-1])
+            predictions = predictions.reshape(-1, predictions.shape[-1])
             tags = tags.view(-1)
-                        
+            loss = loss_func(predictions, tags)
             acc = categorical_accuracy(predictions, tags, tag_pad_idx)
 
+            epoch_loss += loss.item()
             epoch_acc += acc.item()
         
     return epoch_loss / len(val_data), epoch_acc / len(val_data)
@@ -127,11 +128,11 @@ def main(args):
     for ep in range(num_epoch):
         start = time.time()
         train_loss, train_acc = train(model, loss_func, optimizer, cfg, train_iterator)
-        val_loss, val_acc = evaluate(model, cfg, valid_iterator)
+        val_loss, val_acc = evaluate(model, loss_func, cfg, valid_iterator)
         end = time.time() 
         ckpt_file = os.path.join(cfg.work_dir, '{:.5f}_{}_epoch{}.pt'.format(val_acc, cfg.model['type'], ep))
         torch.save(model.state_dict(), ckpt_file)
-        logging.info('Epoch [{}/{}] time: {}'.format(ep, num_epoch, end - start))
+        logging.info('Epoch [{}/{}] time: {:.2f}'.format(ep, num_epoch, end - start))
         logging.info('train_loss: {:.5f}, train_acc: {:.5f}'.format(train_loss, train_acc))
         logging.info('eval_loss : {:.5f}, eval_acc : {:.5f}'.format(val_loss, val_acc))
         logging.info("Save model to {}".format(ckpt_file))
