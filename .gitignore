@@ -133,3 +133,4 @@ work_dirs/bidirec_lstm/*
 work_dirs/bert_lstm/*
 .vector_cache/*
 .data/*
+.vscode/*
