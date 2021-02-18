@@ -90,8 +90,6 @@ def main(args):
             format = '%(asctime)s - %(levelname)s - %(message)s')
 
     cfg = get_cfg_dict(args.config)
-    # logging.info("Training configs :")
-    # logging.info(cfg)
 
     logging.info("Building model ...")
     model = get_model(cfg.model).to(cfg.device)

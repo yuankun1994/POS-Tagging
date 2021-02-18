@@ -128,6 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-work_dirs/*/*
+work_dirs/bertnn/*
+work_dirs/bidirec_lstm/*
+work_dirs/bert_lstm/*
 .vector_cache/*
 .data/*

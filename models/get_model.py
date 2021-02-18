@@ -1,10 +1,12 @@
 from .bilstm import BidirectionalLSTM 
 from .bertnn import BertNN
+from .bert_lstm import BertLSTM
 
 
 model_dict = {
     'BidirectionalLSTM' : BidirectionalLSTM,
-    'BertNN': BertNN
+    'BertNN': BertNN,
+    'BertLSTM': BertLSTM
 }
 
 def get_model(model_cfg):
