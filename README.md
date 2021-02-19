@@ -15,15 +15,22 @@ Here, we adopt the dataset from torchtext.data, which contains about 12543 train
 |   Field  |   Tags  |
 | :------: | :------ |
 | 'udtags' | NOUN,PUNCT,VERB,PRON,ADP,DET,PROPN,ADJ,AUX,ADV,CCONJ,PART,NUM,SCONJ,X,INTJ,SYM |
-| 'ptdtags'| NN,IN,DT,NNP,PRP,JJ,RB,.,VB,NNS,,,CC,VBD,VBP,VBZ,CD,VBN,VBG,MD,TO,PRP$,-RRB-,-LRB-,WDT,WRB,:,``,'',WP,RP,UH,POS,HYPH,JJR,NNPS,JJS,EX,NFP,GW,ADD,RBR,$,PDT,RBS,SYM,LS,FW,AFX,WP$,XX |
+| 'ptbtags'| NN,IN,DT,NNP,PRP,JJ,RB,.,VB,NNS,,,CC,VBD,VBP,VBZ,CD,VBN,VBG,MD,TO,PRP$,-RRB-,-LRB-,WDT,WRB,:,``,'',WP,RP,UH,POS,HYPH,JJR,NNPS,JJS,EX,NFP,GW,ADD,RBR,$,PDT,RBS,SYM,LS,FW,AFX,WP$,XX |
 
 ## Methods 
-Here, we provide 3 method for POS tagging: bidirection-LSTM, BERT+LSTM and BERT. And we train these model with 'udtags'.
-| Method | Val-Acc(%) | Link |
+Here, we provide 3 method for POS tagging: bidirection-LSTM, BERT+LSTM and BERT. And we train these model with 'udtags' and 'ptbtags'.
+
+| METHOD(UDTAGS) | VAL-ACC(%) | LINK |
 | :----- | :--------: | :--: |
-|Bidirec-LSTM | 89.79 | [download](https://drive.google.com/file/d/1-fSytr2cvh2ZpscLvVttPZiF773Bc1mn/view?usp=sharing) |
-|Bert-LSTM | 91.79 | [download](https://drive.google.com/file/d/1SdHb7hoKKWFCngyuLEwlXHzdGQ2_AOv3/view?usp=sharing) |
-|Bert | 92.49 | [download](https://drive.google.com/file/d/1MX2JKLjCipH2j-RXQmckzYHoh1fVptB1/view?usp=sharing) |
+|Bidirec-LSTM | 89.79 | [download](https://drive.google.com/file/d/1Hn9F6AWO3cCJTL4U2p6B_R2JXuiKzBzy/view?usp=sharing) |
+|Bert-LSTM | 91.79 | [download](https://drive.google.com/file/d/1rM3rSLeuZho9AWzOoy-MENNBvTuZimZb/view?usp=sharing) |
+|Bert | 92.49 | [download](https://drive.google.com/file/d/1zR5VsW_MnmkJ_sUSl7dlTKND-U_qr4b9/view?usp=sharing) |
+
+| METHOD(PTBTAGS) | VAL-ACC(%) | LINK |
+| :----- | :--------: | :--: |
+|Bidirec-LSTM | 88.06 | [download](https://drive.google.com/file/d/1rcW0dOsLuRe276KR_msHqDblbYjRafHd/view?usp=sharing) |
+|Bert-LSTM | 91.25 | [download](https://drive.google.com/file/d/1odMlTxaks6h34R6Pc_o_zNlu82qVxwfO/view?usp=sharing) |
+|Bert | 92.38 | [download](https://drive.google.com/file/d/19XI4RkRs8PdqzpPRPMyoCZfzHOCC-UAZ/view?usp=sharing) |
 
 ## Installation 
 1. Setup python virtual environment.
@@ -54,6 +61,6 @@ python train.py YOUR_CFG_FILE
 ```
 Such as:
 ```
-python train.py configs/bertnn.py
+python train.py configs/bertnn_ud.py
 ```
 Most settings used for training and evaluation are set in your runfiles. Each runfile should correspond to a single experiment.

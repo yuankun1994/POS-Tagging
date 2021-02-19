@@ -1,30 +1,29 @@
 model = dict(
-    type = 'BidirectionalLSTM',
-    num_embeddings = 8866,
-    embedding_dim = 100, 
-    hidden_dim = 128, 
+    type = 'BertLSTM',
     output_dim = 18, 
+    hidden_dim = 128, 
     bidirectional = True, 
+    bert_cfg=dict(bert_dir='bert-base-uncased'),
     dropout = 0.25, 
-    pad_idx = 1
+    pad_idx = 0
 )
 data = dict(
-    type = 'no-bert',
-    batch_size = 128, 
-    device = 'cuda',
-    min_feeq = 2
+    type = 'bert',
+    batch_size = 32, 
+    device = 'cuda'
 )
 optimizer = dict(
     type = 'Adam',
-    lr = 1e-3,
+    lr = 5e-5,
     weight_decay = 1e-5
 )
 loss = dict(
     type = 'CrossEntropyLoss',
     ignore_index = 0
 )
+tag = 'udtags'
 tag_pad_idx = 0
 resume = None 
-num_epoch = 20
+num_epoch = 10
 device = 'cuda'
-work_dir = './work_dirs/bidirec_lstm'
+work_dir = './work_dirs/bert_lstm'

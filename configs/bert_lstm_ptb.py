@@ -1,8 +1,10 @@
 model = dict(
-    type = 'BertNN',
-    output_dim = 18, 
+    type = 'BertLSTM',
+    output_dim = 51, 
+    hidden_dim = 128, 
+    bidirectional = True, 
     bert_cfg=dict(bert_dir='bert-base-uncased'),
-    dropout = 0.4, 
+    dropout = 0.25, 
     pad_idx = 0
 )
 data = dict(
@@ -19,8 +21,9 @@ loss = dict(
     type = 'CrossEntropyLoss',
     ignore_index = 0
 )
+tag = 'ptbtags'
 tag_pad_idx = 0
 resume = None 
 num_epoch = 10
 device = 'cuda'
-work_dir = './work_dirs/bertnn'
+work_dir = './work_dirs/bert_lstm'

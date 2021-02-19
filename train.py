@@ -128,7 +128,7 @@ def main(args):
         train_loss, train_acc = train(model, loss_func, optimizer, cfg, train_iterator)
         val_loss, val_acc = evaluate(model, loss_func, cfg, valid_iterator)
         end = time.time() 
-        ckpt_file = os.path.join(cfg.work_dir, '{:.5f}_{}_epoch{}.pt'.format(val_acc, cfg.model['type'], ep))
+        ckpt_file = os.path.join(cfg.work_dir, '{:.5f}_{}_{}_epoch{}.pt'.format(val_acc, cfg.model['type'], cfg.tag, ep))
         torch.save(model.state_dict(), ckpt_file)
         logging.info('Epoch [{}/{}] time: {:.2f}'.format(ep, num_epoch, end - start))
         logging.info('train_loss: {:.5f}, train_acc: {:.5f}'.format(train_loss, train_acc))

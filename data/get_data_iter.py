@@ -19,13 +19,13 @@ def get_data_iter(batch_size, device='cuda', min_feeq=2):
                     vectors = "glove.6B.100d",
                     unk_init = torch.Tensor.normal_)
 
-    # UD_TAGS.build_vocab(train_data)
-    # PTB_TAGS.build_vocab(train_data)
+    UD_TAGS.build_vocab(train_data)
+    PTB_TAGS.build_vocab(train_data)
 
     train_iterator, valid_iterator, test_iterator = data.BucketIterator.splits(
         (train_data, valid_data, test_data), batch_size=batch_size, device=device)
 
-    return (train_iterator, valid_iterator, test_iterator) #, (TEXT, UD_TAGS, PTB_TAGS)
+    return (train_iterator, valid_iterator, test_iterator) 
 
 def get_bert_iter(batch_size, device='cuda', max_input_length=512, bert_dir='bert-base-uncased',
                   init_token_idx=101, pad_token_idx=0, unk_token_idx=100):
