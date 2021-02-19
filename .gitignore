@@ -134,3 +134,4 @@ work_dirs/bert_lstm/*
 .vector_cache/*
 .data/*
 .vscode/*
+demo.py
