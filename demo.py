@@ -19,72 +19,9 @@ def parse_args():
     args = parser.parse_args()
     return args 
 
-def train(model, loss_func, optimizer, cfg, train_data):
-    epoch_loss = 0
-    epoch_acc = 0
-    tag_type = cfg.tag
-    tag_pad_idx = cfg.tag_pad_idx
 
-    model.train()
-
-    for batch in train_data:
-        
-        text = batch.text
-        tags = tags = getattr(batch, tag_type)
-        
-        optimizer.zero_grad()
-        
-        #text = [sent len, batch size]
-        
-        predictions = model(text)
-        
-        #predictions = [sent len, batch size, output dim]
-        #tags = [sent len, batch size]
-        
-        predictions = predictions.reshape(-1, predictions.shape[-1])
-        tags = tags.view(-1)
-        
-        #predictions = [sent len * batch size, output dim]
-        #tags = [sent len * batch size]
-        
-        loss = loss_func(predictions, tags)
-        
-        acc = categorical_accuracy(predictions, tags, tag_pad_idx)
-        
-        loss.backward()
-        
-        optimizer.step()
-        
-        epoch_loss += loss.item()
-        epoch_acc += acc.item()
-        
-    return epoch_loss / len(train_data), epoch_acc / len(train_data)
-
-def evaluate(model, loss_func, cfg, val_data):
-    epoch_loss = 0
-    epoch_acc = 0
-    tag_type = cfg.tag
-    tag_pad_idx = cfg.tag_pad_idx
-    model.eval()
+def convert_str_to_token(string):
     
-    with torch.no_grad():
-    
-        for batch in val_data:
-
-            text = batch.text
-            tags = getattr(batch, tag_type)
-            
-            predictions = model(text)
-            
-            predictions = predictions.reshape(-1, predictions.shape[-1])
-            tags = tags.view(-1)
-            loss = loss_func(predictions, tags)
-            acc = categorical_accuracy(predictions, tags, tag_pad_idx)
-
-            epoch_loss += loss.item()
-            epoch_acc += acc.item()
-        
-    return epoch_loss / len(val_data), epoch_acc / len(val_data)
 
 
 def main(args):

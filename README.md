@@ -11,7 +11,7 @@ Transformers 4.2.2 \
 Numpy 1.20.0 
 
 ## Dataset 
-Here, we adopt the dataset from torchtext.data, which contains about 12543 training examples, 2002 validation examples and 2077 testing examples. The dataset has 3 'field': 'text', 'udtags' and 'ptbtags'. There are 18 different tags in 'udtages' and 51 tags in 'ptbtags'. 
+Here, we adopt the Universal Dependencies dataset in torchtext.data, which contains about 12543 training examples, 2002 validation examples and 2077 testing examples. The dataset has 3 'field': 'text', 'udtags' and 'ptbtags'. There are 18 different tags in 'udtages' and 51 tags in 'ptbtags'. 
 |   Field  |   Tags  |
 | :------: | :------ |
 | 'udtags' | NOUN,PUNCT,VERB,PRON,ADP,DET,PROPN,ADJ,AUX,ADV,CCONJ,PART,NUM,SCONJ,X,INTJ,SYM |
@@ -28,9 +28,9 @@ Here, we provide 3 method for POS tagging: bidirection-LSTM, BERT+LSTM and BERT.
 
 | METHOD(PTBTAGS) | VAL-ACC(%) | LINK |
 | :----- | :--------: | :--: |
-|Bidirec-LSTM | 88.06 | [download](https://drive.google.com/file/d/1rcW0dOsLuRe276KR_msHqDblbYjRafHd/view?usp=sharing) |
-|Bert-LSTM | 91.25 | [download](https://drive.google.com/file/d/1odMlTxaks6h34R6Pc_o_zNlu82qVxwfO/view?usp=sharing) |
-|Bert | 92.38 | [download](https://drive.google.com/file/d/19XI4RkRs8PdqzpPRPMyoCZfzHOCC-UAZ/view?usp=sharing) |
+|Bidirec-LSTM | 88.05 | [download](https://drive.google.com/file/d/1f8n8kD00bgf2KQS1TVu8zgIYU2sEHTOx/view?usp=sharing) |
+|Bert-LSTM | 91.07 | [download](https://drive.google.com/file/d/1pLUmrUYpT1AtyIsg8aG7co2ENC30b6vA/view?usp=sharing) |
+|Bert | 91.33 | [download](https://drive.google.com/file/d/11gNwjaEln7lRyhcu6u3Gt1te_wjif2KF/view?usp=sharing) |
 
 ## Installation 
 1. Setup python virtual environment.

@@ -43,9 +43,14 @@ def get_bert_iter(batch_size, device='cuda', max_input_length=512, bert_dir='ber
                          init_token = '<pad>',
                          preprocessing = functools.partial(cut_to_max_length,
                                      max_input_length = max_input_length))
-    fields = (("text", TEXT), ("udtags", UD_TAGS))
+    PTB_TAGS = data.Field(unk_token = None,
+                         init_token = '<pad>',
+                         preprocessing = functools.partial(cut_to_max_length,
+                                     max_input_length = max_input_length))
+    fields = (("text", TEXT), ("udtags", UD_TAGS), ("ptbtags", PTB_TAGS))
     train_data, valid_data, test_data = datasets.UDPOS.splits(fields)
     UD_TAGS.build_vocab(train_data)
+    PTB_TAGS.build_vocab(train_data)
     train_iterator, valid_iterator, test_iterator = data.BucketIterator.splits(
         (train_data, valid_data, test_data), batch_size=batch_size, device=device)
     return (train_iterator, valid_iterator, test_iterator)
