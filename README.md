@@ -12,10 +12,17 @@ Numpy 1.20.0
 
 ## Dataset 
 Here, we adopt the Universal Dependencies dataset in torchtext.data, which contains about 12543 training examples, 2002 validation examples and 2077 testing examples. The dataset has 3 'field': 'text', 'udtags' and 'ptbtags'. There are 18 different tags in 'udtages' and 51 tags in 'ptbtags'. 
-|   Field  |   Tags  |
-| :------: | :------ |
-| 'udtags' | NOUN,PUNCT,VERB,PRON,ADP,DET,PROPN,ADJ,AUX,ADV,CCONJ,PART,NUM,SCONJ,X,INTJ,SYM |
-| 'ptbtags'| NN,IN,DT,NNP,PRP,JJ,RB,.,VB,NNS,,,CC,VBD,VBP,VBZ,CD,VBN,VBG,MD,TO,PRP$,-RRB-,-LRB-,WDT,WRB,:,``,'',WP,RP,UH,POS,HYPH,JJR,NNPS,JJS,EX,NFP,GW,ADD,RBR,$,PDT,RBS,SYM,LS,FW,AFX,WP$,XX |
+```
+---------------------------------------------------------------------------------------------
+| Field     |                                    Tags                                       |
+|-----------|-------------------------------------------------------------------------------|
+|'udtags'   | NOUN,PUNCT,VERB,PRON,ADP,DET,PROPN,ADJ,AUX,ADV,CCONJ,PART,NUM,SCONJ,X,INTJ,SYM|
+|-----------|-------------------------------------------------------------------------------|
+|           | NN,IN,DT,NNP,PRP,JJ,RB,.,VB,NNS,,,CC,VBD,VBP,VBZ,CD,VBN,VBG,MD,TO,PRP$,-RRB-, |
+|'ptbtags'  |-LRB-,WDT,WRB,:,``,'',WP,RP,UH,POS,HYPH,JJR,NNPS,JJS,EX,NFP,GW,ADD,RBR,$,PDT,  |
+|           |RBS,SYM,LS,FW,AFX,WP$,XX                                                       |
+---------------------------------------------------------------------------------------------
+```
 
 ## Methods 
 Here, we provide 3 method for POS tagging: bidirection-LSTM, BERT+LSTM and BERT. And we train these model with 'udtags' and 'ptbtags'.
